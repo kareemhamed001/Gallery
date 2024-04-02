@@ -15,10 +15,8 @@ return new class extends Migration
     {
         Schema::create('album_images', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('album_id');
-            $table->string('title');
+            $table->foreignIdFor(\App\Models\Album::class);
             $table->string('image');
-            $table->foreign('album_id')->references('albums')->on('id')->cascadeOnDelete();
             $table->timestamps();
         });
     }

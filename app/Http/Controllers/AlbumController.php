@@ -2,15 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Album;
 use Illuminate\Http\Request;
 
 class AlbumController extends Controller
 {
 
-    function index(){
+    function index()
+    {
         return view('Albums.index');
     }
-    function albumView($id){
-        return view('Albums.view',compact('id'));
+
+    function show($id)
+    {
+        try {
+            $album = Album::query()->with('images')->findOrFail($id);
+            return view('Albums.show', compact('album'));
+        } catch (\Throwable $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
+
+
 }

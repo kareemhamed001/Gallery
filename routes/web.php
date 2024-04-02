@@ -18,4 +18,4 @@ use Illuminate\Support\Facades\Route;
 //});
 
 Route::get('/',[\App\Http\Controllers\AlbumController::class,'index'])->name('albums.index');
-Route::get('album/{id}/view',[\App\Http\Controllers\AlbumController::class,'albumView'])->name('albums.view');
+Route::get('albums/{id}',[\App\Http\Controllers\AlbumController::class,'show'])->name('albums.show');

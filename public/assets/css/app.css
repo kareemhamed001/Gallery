@@ -1,31 +1,180 @@
-.list-group-container{
-    bottom: -15px;
-    transition: 0.5s ease;
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+*{
+    font-family: 'Playfair Display', serif;
+}
+#page-cover-section{
+    width: 100%;
+    height: 60vh;
+    position: relative;
 }
 
-.album-card:hover .list-group-container{
-    bottom: 0;
-}
-.album-card:hover .title-container{
-   display: flex;
+#page-cover-section img{
+    scale: 1;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
 }
 
-.list-group-container a{
-    text-decoration: none;
+.overlay{
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    background-color: black;
+    opacity: 20%;
+}
+#search-box{
+    z-index: 100;
+}
+
+.album{
+    height: 200px;
+    padding: 0.5rem;
+}
+.album .album-name-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    transform: translate(-50%, -50%);
+}
+.album .card{
+    overflow: hidden;
+}
+.album .album-name{
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: 'Nunito', sans-serif;
+    width: 100%;
+    text-align: center;
+    padding: 0.5rem 0.2rem;
+}
+.album .card-body:hover{
     cursor: pointer;
-    color: #6a6a6a;
-    transition: 0.4s ease-in;
+    /*border:1px solid black;*/
+    transition: all 0.5s ease;
+}
+.album .card:hover .options-container{
+    display: flex;
+    transform: translate(-0%, -100%);
+    transition: all 0.5s ease;
+}
+.album .options-container{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    top: 100%;
+    width: 100%;
+    padding: 0.2rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: translate(-0%, 100%);
 }
 
-.list-group-container a:hover{
-    color: black;
-
-}
-
-.title-container{
+#back-arrow-container:hover {
     cursor: pointer;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: none;
-    transition: 0.4s ease-in;
+    transition: all 0.5s ease;
+    transform: scale(1.05);
+}
+
+#back-arrow-container:hover #back-arrow {
+    transition: all 0.5s ease;
+    transform: translateX(-50%);
 
 }
+#back-arrow{
+
+}
+
+#loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100; /* Adjust the z-index as needed to make sure it overlays other elements */
+    position: fixed;
+    transition: all 0.5s ease;
+}
+
+.loader {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    position: relative;
+    transform: rotate(45deg);
+}
+
+.loader::before {
+    content: '';
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: 0;
+    top: -24px;
+    animation: animloader 4s ease infinite;
+}
+
+.loader::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 24px;
+    height: 24px;
+    background: #0a53be;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+    animation: animloader2 2s ease infinite;
+}
+
+@keyframes animloader {
+    0% {
+        box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+    }
+    12% {
+        box-shadow: 0 24px white, 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+    }
+    25% {
+        box-shadow: 0 24px white, 24px 24px white, 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+    }
+    37% {
+        box-shadow: 0 24px white, 24px 24px white, 24px 48px white, 0px 48px rgba(255, 255, 255, 0);
+    }
+    50% {
+        box-shadow: 0 24px white, 24px 24px white, 24px 48px white, 0px 48px white;
+    }
+    62% {
+        box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px white, 24px 48px white, 0px 48px white;
+    }
+    75% {
+        box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px white, 0px 48px white;
+    }
+    87% {
+        box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px white;
+    }
+    100% {
+        box-shadow: 0 24px rgba(255, 255, 255, 0), 24px 24px rgba(255, 255, 255, 0), 24px 48px rgba(255, 255, 255, 0), 0px 48px rgba(255, 255, 255, 0);
+    }
+}
+
+@keyframes animloader2 {
+    0% {
+        transform: translate(0, 0) rotateX(0) rotateY(0);
+    }
+    25% {
+        transform: translate(100%, 0) rotateX(0) rotateY(180deg);
+    }
+    50% {
+        transform: translate(100%, 100%) rotateX(-180deg) rotateY(180deg);
+    }
+    75% {
+        transform: translate(0, 100%) rotateX(-180deg) rotateY(360deg);
+    }
+    100% {
+        transform: translate(0, 0) rotateX(0) rotateY(360deg);
+    }
+}
+

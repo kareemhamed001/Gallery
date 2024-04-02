@@ -14,6 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('albums/search', [\App\Http\Controllers\Api\AlbumController::class, 'search']);
+Route::get('albums', [\App\Http\Controllers\Api\AlbumController::class, 'index']);
+Route::get('albums/{id}', [\App\Http\Controllers\Api\AlbumController::class, 'show']);
+Route::post('albums/{id}', [\App\Http\Controllers\Api\AlbumController::class, 'update']);
+Route::post('albums', [\App\Http\Controllers\Api\AlbumController::class, 'store']);
+Route::delete('albums/{id}', [\App\Http\Controllers\Api\AlbumController::class, 'destroy']);
+
+Route::post('images', [\App\Http\Controllers\Api\ImageController::class, 'store']);
+Route::delete('images/{id}', [\App\Http\Controllers\Api\ImageController::class, 'destroy']);
+Route::delete('images', [\App\Http\Controllers\Api\ImageController::class, 'destroyAll']);
+
+
