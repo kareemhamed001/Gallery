@@ -2,7 +2,7 @@
 @section('content')
     <section id="page-cover-section">
         <div class="overlay"></div>
-        <img class="w-100 h-100" src="{{asset('assets/images/wallpaperflare.com_wallpaper40.jpg')}}" alt="">
+        <img class="w-100 h-100" src="{{asset('assets/images/cover.jpg')}}" alt="">
         <div class="position-absolute top-50 start-50 translate-middle" id="search-box">
             <form action="" id="searchForm">
 
